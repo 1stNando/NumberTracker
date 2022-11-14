@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using CsvHelper;
 
 namespace NumberTracker
 {
@@ -46,8 +47,13 @@ namespace NumberTracker
                 }
             }
 
-            var fileWriter = new StreamWriter("numbers.csv");
+            // var fileWriter = new StreamWriter("numbers.csv");
 
+            // var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            // //Where to write. And what data to write.
+            // csvWriter.WriteRecords(numbers);
+            // //Tell the object that writes to the file that we are done and closes.
+            // fileWriter.Close();
 
 
         }
