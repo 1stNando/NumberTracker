@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.IO;
 using CsvHelper;
 
@@ -8,11 +9,23 @@ namespace NumberTracker
 {
     class Program
     {
+
+        // static void SaveStudents(List<Student> students)
+        // {
+        //   var writer = new StreamWriter("students.csv");
+        //   var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+        //   csvWriter.WriteRecords(students);
+        //   writer.Flush();
+        // }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Number Tracker");
 
-            // - Create an empty list of numbers.
+            //After we put the Write together, we then add a READ stream.
+            var fileReader = new StreamReader("numbers.csv");
+
+            // Creates a list of numbers we will be tracking
             var numbers = new List<int>();
 
             // Controls if we are still running our loop asking for more numbers
@@ -27,14 +40,13 @@ namespace NumberTracker
                 {
                     Console.WriteLine(number);
                 }
-                Console.WriteLine($"Our list has: {numbers.Count()} entries");
                 Console.WriteLine("------------------");
 
                 // Ask for a new number or the word quit to end
-                Console.Write("Enter a number to store, or 'quit' to end: ");
+                Console.Write("Enter a number to store, or '(q)uit' to end: ");
                 var input = Console.ReadLine().ToLower();
 
-                if (input == "quit")
+                if (input == "q")
                 {
                     // If the input is quit, turn off the flag to keep looping
                     isRunning = false;
@@ -47,15 +59,17 @@ namespace NumberTracker
                 }
             }
 
-            // var fileWriter = new StreamWriter("numbers.csv");
+            // Create a stream for writing information into a file
+            var fileWriter = new StreamWriter("numbers.csv");
 
-            // var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
-            // //Where to write. And what data to write.
-            // csvWriter.WriteRecords(numbers);
-            // //Tell the object that writes to the file that we are done and closes.
-            // fileWriter.Close();
+            // Create an object that can write CSV to the fileWriter
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
 
+            // Hey CsvWriter! Here is the the data I want you to write about.  
+            csvWriter.WriteRecords(numbers);
 
+            // Tell the file we are done
+            fileWriter.Close();
         }
     }
 }
