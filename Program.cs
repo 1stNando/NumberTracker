@@ -39,7 +39,7 @@ namespace NumberTracker
             }
             else
             {
-                //Assign StringReader to read from an empty string
+                //Assign StringReader to read from an empty string. And parse the csv from this empty string.
                 reader = new StringReader("");
             }
 
@@ -55,7 +55,7 @@ namespace NumberTracker
 
             ////////////////////////////////////////////Part 1 below:
             // Creates a list of numbers we will be tracking
-            var numbers = new List<int>();
+            //var numbers = new List<int>();
 
             // Controls if we are still running our loop asking for more numbers
             var isRunning = true;
