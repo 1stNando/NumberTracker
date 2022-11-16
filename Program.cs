@@ -49,7 +49,7 @@ namespace NumberTracker
                 //Tell the reader not to interpret the first row as a "header" since it is just the first number.
                 HasHeaderRecord = false,
             };
-            var csvReader = new CsvReader(fileReader, config);
+            var csvReader = new CsvReader(reader, config);
 
             var numbers = csvReader.GetRecords<int>().ToList();
 
